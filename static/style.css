@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 映画情報のカードコンテナ */
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 映画情報のカード */
+.movie {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+    width: 250px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.movie img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+/* タイトルのフォントサイズを調整 */
+.movie h2 {
+    font-size: 1.3em; 
+    margin: 10px 0;
+}
+
+.movie p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* レスポンシブ対応のスタイル */
+@media (max-width: 768px) {
+    .movie {
+        width: 100%;
+    }
+}

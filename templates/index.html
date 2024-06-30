@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今月公開・配信の新作映画一覧</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>今月公開・配信の新作映画一覧</h1>
+
+    <!-- 映画情報を表示するコンテナ -->
+    <div class="movies" id="movies-container">
+        {% for movie in movies %}
+        <div class="movie" data-release-date="{{ movie.release_date }}" data-genre="{{ movie.genre }}">
+            <img src="{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <h2>{{ movie.title }}</h2>
+            <p>公開日: {{ movie.release_date }}</p>
+            <p>ジャンル: {{ movie.genre }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
