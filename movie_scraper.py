@@ -1,11 +1,15 @@
 import requests
 from config import TMDB_ACCESS_TOKEN
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
+import pytz
 
 def get_new_movies():
-    # 現在の年と月を取得
-    now = datetime.now()
+    # 日本時間のタイムゾーンを取得
+    JST = pytz.timezone('Asia/Tokyo')
+    
+    # 現在の年と月を日本時間で取得
+    now = datetime.now(JST)
     current_year = now.year
     current_month = now.month
     
