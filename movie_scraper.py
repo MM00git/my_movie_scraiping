@@ -32,7 +32,7 @@ def get_new_movies():
     page = 1
     total_pages = 1
     
-    # 全ページを取得
+    # 全ページを取得するためにループ
     while page <= total_pages:
         # ページごとにリクエストURLを更新
         url = base_url + str(page)
@@ -60,7 +60,7 @@ def get_new_movies():
     # 公開日順にソート
     sorted_movies = sorted(movies, key=lambda x: x['release_date'])
     
-    # データをJSONファイルに書き出す
+    # データをJSONファイルに書き出す（初期化処理を含む）
     with open('new_movies.json', 'w', encoding='utf-8') as json_file:
         json.dump(sorted_movies, json_file, ensure_ascii=False, indent=4)
     
