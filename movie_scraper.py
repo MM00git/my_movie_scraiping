@@ -73,9 +73,9 @@ def get_new_movies():
                         image_filename = f"posters/{movie['id']}.jpg"
                         save_image(resized_image, image_filename)
                     else:
-                        image_filename = "img\NoPhoto_image.jpg"  # NoPhoto画像のパス
+                        image_filename = f"img/NoPhoto_image.jpg"
                 else:
-                    image_filename = "img\NoPhoto_image.jpg"  # NoPhoto画像のパス
+                    image_filename = f"img/NoPhoto_image.jpg"
                 
                 movie_info = {
                     'title': movie['title'],                 # 作品タイトル
