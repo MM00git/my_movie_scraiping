@@ -3,20 +3,6 @@ from config import TMDB_ACCESS_TOKEN
 import json
 from datetime import datetime, timedelta
 import pytz
-from PIL import Image
-from io import BytesIO
-
-def resize_image(image, size=(500, 750)):
-    """
-    画像を指定したサイズにリサイズする
-    """
-    return image.resize(size, Image.ANTIALIAS)
-
-def save_image(image, path):
-    """
-    画像を指定したパスに保存する
-    """
-    image.save(path, format='JPEG')
 
 def get_new_movies():
     # 日本時間のタイムゾーンを取得
@@ -62,26 +48,18 @@ def get_new_movies():
             
             # 各映画情報を取り出し、必要なデータをリストに追加
             for movie in data['results']:
+                # ポスター画像のパスをチェックして適切なURLを設定
                 poster_path = movie['poster_path']
                 if poster_path:
                     full_poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
-                    # 画像をダウンロード
-                    response = requests.get(full_poster_url)
-                    if response.status_code == 200:
-                        image = Image.open(BytesIO(response.content))
-                        resized_image = resize_image(image)
-                        image_filename = f"posters/{movie['id']}.jpg"
-                        save_image(resized_image, image_filename)
-                    else:
-                        image_filename = f"img/NoPhoto_image.jpg"
                 else:
-                    image_filename = f"img/NoPhoto_image.jpg"
+                    full_poster_url = "img/NoPhoto_image.jpg"  # NoPhoto画像URL
                 
                 movie_info = {
                     'title': movie['title'],                 # 作品タイトル
                     'overview': movie['overview'],           # あらすじ
                     'release_date': movie['release_date'],   # 公開日
-                    'poster_path': image_filename,           # 保存されたポスター画像のパス
+                    'poster_path': full_poster_url,          # 作品ポスター
                     'genre': get_genre_names(movie['genre_ids'])  # ジャンル名
                 }
                 movies.append(movie_info)
