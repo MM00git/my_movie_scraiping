@@ -60,9 +60,9 @@ def get_new_movies():
                     full_poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
                     # URLが.jpgで終わるかどうかをチェック
                     if not is_valid_poster_url(full_poster_url):
-                        full_poster_url = f"img/NoPhoto_image.jpg"
+                        full_poster_url = f"https://github.com/MM00git/thismonth_movie_app/blob/10ac5fcb73572d8077ee87f9de3f19b2c8f19f16/img/nophoto_image.jpg?raw=true"
                 else:
-                    full_poster_url = f"img/NoPhoto_image.jpg"
+                    full_poster_url = f"f"https://github.com/MM00git/thismonth_movie_app/blob/10ac5fcb73572d8077ee87f9de3f19b2c8f19f16/img/nophoto_image.jpg?raw=true""
                 
                 movie_info = {
                     'title': movie['title'],                 # 作品タイトル
