@@ -4,6 +4,12 @@ import json
 from datetime import datetime, timedelta
 import pytz
 
+def is_valid_poster_url(url):
+    """
+    URLの末尾が.jpgで終わっているかチェックする
+    """
+    return url.endswith('.jpg')
+
 def get_new_movies():
     # 日本時間のタイムゾーンを取得
     JST = pytz.timezone('Asia/Tokyo')
@@ -52,8 +58,11 @@ def get_new_movies():
                 poster_path = movie['poster_path']
                 if poster_path:
                     full_poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
+                    # URLが.jpgで終わるかどうかをチェック
+                    if not is_valid_poster_url(full_poster_url):
+                        full_poster_url = f"img/NoPhoto_image.jpg"
                 else:
-                    full_poster_url = "img/NoPhoto_image.jpg"  # NoPhoto画像URL
+                    full_poster_url = f"img/NoPhoto_image.jpg"
                 
                 movie_info = {
                     'title': movie['title'],                 # 作品タイトル
